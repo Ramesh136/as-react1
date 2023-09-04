@@ -1,5 +1,5 @@
 const RestaurantCard =(
-    {name , cuisines , cloudinaryImageId,lastMileTravelString}
+    {name , cuisines , cloudinaryImageId,areaName}
   ) => {
   
     return (
@@ -12,7 +12,7 @@ const RestaurantCard =(
       />
       <h2>{name}</h2>
       <h3>{cuisines.join(", ")}</h3>
-      <h4>{lastMileTravelString} minutes</h4>
+      <h4>{areaName} </h4>
     </div>  
     )
   }

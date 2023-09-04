@@ -1,12 +1,13 @@
 import RestaurantCard from "./RestaurantCard";
 import { restrautList } from "../constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {newData} from "../constants"
 
 const filtered = (restaurantData , searchText)=> {
 
    return restaurantData.filter((restaurants)=>{
       
-        return restaurants.data.name.includes(searchText)
+        return restaurants.info.name.toLowerCase().includes(searchText.toLowerCase())
     })
 }
 
@@ -14,7 +15,29 @@ const filtered = (restaurantData , searchText)=> {
 const Body = ()=> {
 
     const [searchText,setSearchText] = useState("");
-    const [restaurantData , setRestaurantData] = useState(restrautList);
+    const [filteredRestaurantData , setFilteredRestaurantData] = useState([]);
+    const [restaurantData , setRestaurantData] = useState([]);
+
+    useEffect(()=>{
+        getRestaurant()
+        console.log('API called')
+    },[])
+
+    console.log('rendered')
+
+    async function getRestaurant(){
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING")
+        const json = await data.json()
+
+        setRestaurantData(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurantData(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    }
+
+    if(restaurantData.length === 0)
+    {
+        return <h1>Shimmer UI Loading</h1>
+    }
+
 
     return (
         <>
@@ -31,17 +54,16 @@ const Body = ()=> {
                 className="search-btn"
                 onClick={()=>{
                     const data = filtered(restaurantData , searchText)
-
-                    setRestaurantData(data)
-                    
+                    setFilteredRestaurantData(data)
                 } }
             >
                  Search
             </button>
         </div>
         <div className="restaurant-list">
-        {restaurantData.map((restaurant) => {
-            return <RestaurantCard {...restaurant.data} key={restaurant.data.id} />;
+        {filteredRestaurantData.length===0 && <h1>No Matches Found</h1>}
+        {filteredRestaurantData.map((restaurant) => {
+            return <RestaurantCard {...restaurant.info} key={restaurant.info.id} />;
         })}
         </div>
         </>

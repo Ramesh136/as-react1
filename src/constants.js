@@ -731,3 +731,32 @@ export const restrautList = [
       subtype: "basic",
     },
   ];
+
+
+  export const newData =
+  [{
+  info: {
+    id: "84747",
+    name: "The Belgian Waffle Co.",
+    cloudinaryImageId: "korllnl0tvxu3gkvmozq",
+    locality: "Park View Layout",
+    areaName: "Sahakara Nagar",
+    costForTwo: "₹200 for two",
+    cuisines: [
+      "Waffle",
+      "Desserts",
+      "Ice Cream",
+      "Beverages"
+    ]
+  }},
+  {info: {
+    id: "53760",
+    name: "Pizza Hut",
+    cloudinaryImageId: "2b4f62d606d1b2bfba9ba9e5386fabb7",
+    locality: "NES Service Road",
+    areaName: "Yelahanka New Town",
+    costForTwo: "₹350 for two",
+    cuisines: [
+      "Pizzas"
+    ]
+  }}]
