@@ -26,6 +26,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
+import Footer from "./Components/Footer";
+import {Outlet, createBrowserRouter , RouterProvider} from "react-router-dom" ;
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import RestaurantMenu from "./Components/RestaurantMenu";
 
 
 function App(){
@@ -33,14 +38,41 @@ function App(){
   return (
     <>
     <Header />
-    <Body />
-
+    <Outlet />
+    <Footer />
     </>
   )
 }
+
+const router = createBrowserRouter([
+  {
+    path : "/",
+    element : <App />,
+    children : [
+      {
+        path : "/",
+        element : <Body />,
+      },
+      {
+        path : "/about",
+        element : <About />,
+      },
+      {
+        path : "/contact",
+        element : <Contact />,
+      },
+      {
+        path : "/restaurant/:id",
+        element : <RestaurantMenu/>,
+      },
+
+    ]
+
+  }
+])
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 //passing a react element inside the root
 
-root.render(<App />);
+root.render(<RouterProvider router = {router} />);

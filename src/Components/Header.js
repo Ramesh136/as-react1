@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 const Title = () => {
 
     return (
@@ -11,16 +14,25 @@ const Title = () => {
   }
   
   const Header = () => {
+
+    const [isLoggedIn , setIsLoggedIn] = useState(false)
     return (
       <div className="header">
         <Title />
         <div className="nav-items">
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>Cart</li>
+            <Link to ="/"><li>Home  </li></Link>
+            <Link to ="/about"><li>About  </li></Link>
+            <Link to ="/contact"><li>Contact   </li></Link>
+            <Link to = "/"><li>Cart</li></Link>
           </ul>
+        </div>
+        <div  className="login-button">
+          {isLoggedIn? <button onClick={()=>{
+            setIsLoggedIn(false)
+          }}>Log in</button> : <button onClick={()=>{
+            setIsLoggedIn(true)
+          }}>Log out</button>}
         </div>
       </div>
     );

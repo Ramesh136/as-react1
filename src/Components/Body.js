@@ -2,6 +2,8 @@ import RestaurantCard from "./RestaurantCard";
 import { restrautList } from "../constants";
 import { useEffect, useState } from "react";
 import {newData} from "../constants"
+import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const filtered = (restaurantData , searchText)=> {
 
@@ -33,13 +35,11 @@ const Body = ()=> {
         setFilteredRestaurantData(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
-    if(restaurantData.length === 0)
-    {
-        return <h1>Shimmer UI Loading</h1>
-    }
+    if (!restaurantData) return null;
 
-
-    return (
+    return restaurantData?.length === 0 ? (
+        <Shimmer />
+      ) : (
         <>
         <div>
             <input 
@@ -63,7 +63,7 @@ const Body = ()=> {
         <div className="restaurant-list">
         {filteredRestaurantData.length===0 && <h1>No Matches Found</h1>}
         {filteredRestaurantData.map((restaurant) => {
-            return <RestaurantCard {...restaurant.info} key={restaurant.info.id} />;
+            return <Link to = {"/restaurant/"+restaurant.info.id} key={restaurant.info.id} ><RestaurantCard {...restaurant.info} /></Link>;
         })}
         </div>
         </>

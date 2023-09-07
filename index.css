@@ -36,3 +36,22 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.shimmer-card {
+    width: 200px;
+    height: 200px;
+    background: lightgrey;
+    margin: 20px;
+}
+
+.login-button{
+    display: flex;
+}
+
+.search-input{
+    margin-left: 10px;
+}
+
+.menu{
+    display:flex
+}
