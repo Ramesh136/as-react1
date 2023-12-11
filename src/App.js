@@ -31,16 +31,19 @@ import {Outlet, createBrowserRouter , RouterProvider} from "react-router-dom" ;
 import About from "./Components/About";
 import Contact from "./Components/Contact";
 import RestaurantMenu from "./Components/RestaurantMenu";
+import Cart from "./Components/Cart"
+import { Provider } from "react-redux";
+import store from "./store";
 
 
 function App(){
 
   return (
-    <>
+    <Provider store ={store}>
     <Header />
     <Outlet />
     <Footer />
-    </>
+    </Provider>
   )
 }
 
@@ -50,20 +53,24 @@ const router = createBrowserRouter([
     element : <App />,
     children : [
       {
-        path : "/",
+        path : "",
         element : <Body />,
       },
       {
-        path : "/about",
+        path : "about",
         element : <About />,
       },
       {
-        path : "/contact",
+        path : "contact",
         element : <Contact />,
       },
       {
-        path : "/restaurant/:id",
+        path : "restaurant/:id",
         element : <RestaurantMenu/>,
+      },
+      {
+        path : "cart",
+        element : <Cart />,
       },
 
     ]

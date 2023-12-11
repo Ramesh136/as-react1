@@ -1,5 +1,5 @@
-const RestaurantCard =(
-    {name , cuisines , cloudinaryImageId,areaName}
+const CartCard =(
+    {name , price , imageId,description}
   ) => {
   
     return (
@@ -8,14 +8,14 @@ const RestaurantCard =(
         className="h-52 "
         src={
           "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" +
-          cloudinaryImageId
+          imageId
         }
       />
       <h2 className="text-xl font-bold">{name}</h2>
-      <h3>{cuisines.join(", ")}</h3>
-      <h4>{areaName} </h4>
+      <h3>{description}</h3>
+      <h4>{price/10} </h4>
     </div>  
     )
   }
 
-  export default RestaurantCard
+  export default CartCard
