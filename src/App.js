@@ -33,7 +33,7 @@ import Contact from "./Components/Contact";
 import RestaurantMenu from "./Components/RestaurantMenu";
 import Cart from "./Components/Cart"
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "./utils/store";
 
 
 function App(){

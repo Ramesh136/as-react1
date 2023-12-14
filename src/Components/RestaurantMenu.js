@@ -1,9 +1,9 @@
 import { useEffect , useState} from "react"
 import { useParams } from "react-router-dom"
-import { IMG_URL } from "../constants" 
+import { IMG_URL } from "../utils/constants" 
 import Shimmer from "./Shimmer"
 import { useDispatch } from "react-redux"
-import { addItem } from "../cartSlice"
+import { addItem } from "../utils/cartSlice"
 
 const RestaurantMenu =()=>{
 
@@ -44,10 +44,11 @@ const RestaurantMenu =()=>{
     </div>
     <div className="m-3">
       <h1 className = "font-bold">Menu</h1>
-      <ul>
+      <ul data-testid ="menu">
         {itemsList.map((item) => (
           <li key={item.card.info.id}>{item.card.info.name} - <button className="m-2 p-2 bg-red-300"
-           onClick={()=>{
+          data-testid="addBtn" 
+          onClick={()=>{
             itemHandler(item)
           }}>Add</button></li>
         ))}

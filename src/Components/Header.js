@@ -27,7 +27,7 @@ const Title = () => {
             <Link to ="/"><li className="px-2">Home  </li></Link>
             <Link to ="/about"><li className="px-2">About  </li></Link>
             <Link to ="/contact"><li className="px-2">Contact   </li></Link>
-            <Link to = "/cart"><li className="px-2">Cart - {cartItems.length}</li></Link>
+            <Link to = "/cart"><li className="px-2" data-testid ="cart">Cart - {cartItems.length}</li></Link>
           </ul>
         </div>
         <div  className="py-5 pr-3">
